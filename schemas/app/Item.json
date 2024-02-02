@@ -82,6 +82,55 @@
       "fieldtype": "Text"
     },
     {
+      "fieldname":"color",
+      "label":"Color",
+      "placeholder":"Item Color",
+      "section":"Details",
+      "fieldtype":"Color",
+      "options": [
+        {
+          "label": "Red",
+          "value": "#f56565"
+        },
+        {
+          "label": "Orange",
+          "value": "#ed8936"
+        },
+        {
+          "label": "Yellow",
+          "value": "#ecc94b"
+        },
+        {
+          "label": "Green",
+          "value": "#48bb78"
+        },
+        {
+          "label": "Teal",
+          "value": "#38b2ac"
+        },
+        {
+          "label": "Blue",
+          "value": "#33a1ff"
+        },
+        {
+          "label": "Indigo",
+          "value": "#667eea"
+        },
+        {
+          "label": "Purple",
+          "value": "#9f7aea"
+        },
+        {
+          "label": "Pink",
+          "value": "#ed64a6"
+        },
+        {
+          "label": "Black",
+          "value": "#112B42"
+        }
+      ]
+    },
+    {
       "fieldname": "incomeAccount",
       "label": "Sales Acc.",
       "fieldtype": "Link",
@@ -160,6 +209,7 @@
     "for",
     "tax",
     "description",
+    "color",
     "incomeAccount",
     "expenseAccount",
     "barcode",
