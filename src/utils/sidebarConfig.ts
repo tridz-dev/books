@@ -320,5 +320,23 @@ function getCompleteSidebar(): SidebarConfig {
         },
       ] as SidebarItem[],
     },
+    {
+      label: t`Tables`,
+      name: 'tables',
+      route: '/tables',
+      icon: 'tables',
+      items: [
+        {
+          label: t`Tables`,
+          name: 'use-tables',
+          route: '/tables',
+        },
+        {
+          label: t`Manage Tables`,
+          name: 'setup-tables',
+          route: '/set-tables',
+        },
+      ] as SidebarItem[],
+    },
   ].flat();
 }

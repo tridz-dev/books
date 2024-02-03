@@ -23,6 +23,7 @@ import Settings from './settings.vue';
 import Start from './start.vue';
 import Supplier from './supplier.vue';
 import System from './system.vue';
+import Tables from './tables.vue'
 
 // prettier-ignore
 export default {
@@ -30,6 +31,7 @@ export default {
   'common-entries': CommonEntries,
   'customer': Customer,
   'dashboard': Dashboard,
+  'tables': Tables,
   'fb': Fb,
   'general': General,
   'gst': Gst,
