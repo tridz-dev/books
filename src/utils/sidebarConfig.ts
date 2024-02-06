@@ -320,5 +320,11 @@ function getCompleteSidebar(): SidebarConfig {
         },
       ] as SidebarItem[],
     },
+    {
+      label: t`Rooms`,
+      name: 'rooms',
+      route: '/list/Rooms',
+      icon: 'rooms',
+    },
   ].flat();
 }

@@ -23,6 +23,7 @@ import Settings from './settings.vue';
 import Start from './start.vue';
 import Supplier from './supplier.vue';
 import System from './system.vue';
+import Rooms from './rooms.vue';
 
 // prettier-ignore
 export default {
@@ -45,6 +46,7 @@ export default {
   'purchase': Purchase,
   'reports': Reports,
   'review-ac': ReviewAc,
+  'rooms': Rooms,
   'sales-invoice': SalesInvoice,
   'sales': Sales,
   'settings': Settings,

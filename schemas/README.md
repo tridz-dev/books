@@ -41,3 +41,4 @@ explicitly added, the schema builder will add it in.
 
 The following schema fields will be implicitly translated by the frontend:
 `"label"`, `"description"`, and `"placeholder"`, irrespective of nesting.
++

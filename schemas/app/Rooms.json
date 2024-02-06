@@ -1,0 +1,30 @@
+{
+  "name": "Rooms",
+  "label": "Rooms",
+  "naming": "manual",
+  "isSingle": false,
+  "isChild": false,
+  "showTitle": true,
+  "fields": [
+    {
+      "fieldname": "number",
+      "label": "Room Number",
+      "fieldtype": "Data",
+      "required": true
+    },
+    {
+      "fieldname": "name",
+      "label": "Name",
+      "fieldtype": "Data",
+      "required": true
+    },
+    {
+      "fieldname": "capacity",
+      "label": "Capacity",
+      "fieldtype": "Data",
+      "required": false
+    }
+  ],
+  "keywordFields": ["number", "name"],
+  "quickEditFields": ["number", "name"]
+}

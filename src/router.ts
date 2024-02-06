@@ -137,6 +137,16 @@ const routes: RouteRecordRaw[] = [
       edit: (route) => route.query,
     },
   },
+  // {
+  //   path: '/rooms',
+  //   name: 'Rooms',
+  //   component: Rooms,
+  // },
+  // {
+  //   path: '/set-rooms',
+  //   name: 'Setup Rooms',
+  //   component: SetRooms,
+  // },
 ];
 
 const router = createRouter({ routes, history: createWebHistory() });
