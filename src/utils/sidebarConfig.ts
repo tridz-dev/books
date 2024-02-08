@@ -324,6 +324,7 @@ function getCompleteSidebar(): SidebarConfig {
       label: t`Rooms`,
       name: 'rooms',
       route: '/list/Rooms',
+      schemaName: 'Rooms',
       icon: 'rooms',
     },
   ].flat();

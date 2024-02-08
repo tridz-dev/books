@@ -2,14 +2,12 @@
   "name": "Rooms",
   "label": "Rooms",
   "naming": "manual",
-  "isSingle": false,
-  "isChild": false,
-  "showTitle": true,
   "fields": [
     {
       "fieldname": "number",
       "label": "Room Number",
       "fieldtype": "Data",
+      "default": "RM-",
       "required": true
     },
     {
@@ -21,10 +19,10 @@
     {
       "fieldname": "capacity",
       "label": "Capacity",
-      "fieldtype": "Data",
+      "fieldtype": "Int",
       "required": false
     }
   ],
   "keywordFields": ["number", "name"],
-  "quickEditFields": ["number", "name"]
+  "quickEditFields": ["number", "name","capacity"]
 }
