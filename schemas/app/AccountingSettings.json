@@ -101,6 +101,13 @@
       "section": "Features"
     },
     {
+      "fieldname": "enableTables",
+      "label": "Enable Tables",
+      "fieldtype": "Check",
+      "default": false,
+      "section": "Features"
+    },
+    {
       "fieldname": "fiscalYearStart",
       "label": "Fiscal Year Start Date",
       "fieldtype": "Date",

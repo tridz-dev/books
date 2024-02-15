@@ -146,6 +146,34 @@ function getReportSidebar() {
   };
 }
 
+function getTablesSidebar(): SidebarRoot[] {
+  const hasTables = !!fyo.singles.AccountingSettings?.enableTables;
+  if (!hasTables) {
+    return [];
+  }
+
+  return [
+    {
+      label: t`Tables`,
+      name: 'tables',
+      route: '/tables',
+      icon: 'tables',
+      items: [
+        {
+          label: t`Tables`,
+          name: 'use-tables',
+          route: '/tables',
+        },
+        {
+          label: t`Manage Tables`,
+          name: 'setup-tables',
+          route: '/set-tables',
+        },
+      ],
+    },
+  ];
+}
+
 function getCompleteSidebar(): SidebarConfig {
   return [
     {
@@ -278,6 +306,7 @@ function getCompleteSidebar(): SidebarConfig {
     getInventorySidebar(),
     getPOSSidebar(),
     getRegionalSidebar(),
+    getTablesSidebar(),
     {
       label: t`Setup`,
       name: 'setup',
