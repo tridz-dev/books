@@ -11,9 +11,10 @@
     },
     {
       "fieldname": "hexvalue",
-      "fieldtype": "Data",
+      "fieldtype": "ColorPicker",
       "label": "Hex Value",
       "required": true
     }
-  ]
+  ],
+  "quickEditFields": ["name", "hexvalue"]
 }

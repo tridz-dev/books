@@ -5,6 +5,7 @@ import Attachment from './Attachment.vue';
 import AutoComplete from './AutoComplete.vue';
 import Check from './Check.vue';
 import Color from './Color.vue';
+import ColorPicker from './ColorPicker.vue';
 import Currency from './Currency.vue';
 import Data from './Data.vue';
 import Date from './Date.vue';
@@ -21,6 +22,7 @@ const components = {
   Data,
   Check,
   Color,
+  ColorPicker,
   Select,
   Link,
   Date,

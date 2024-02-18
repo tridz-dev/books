@@ -3,6 +3,7 @@ import { Account } from './baseModels/Account/Account';
 import { AccountingLedgerEntry } from './baseModels/AccountingLedgerEntry/AccountingLedgerEntry';
 import { AccountingSettings } from './baseModels/AccountingSettings/AccountingSettings';
 import { Address } from './baseModels/Address/Address';
+import { Color } from './baseModels/Color/Color';
 import { Defaults } from './baseModels/Defaults/Defaults';
 import { Item } from './baseModels/Item/Item';
 import { JournalEntry } from './baseModels/JournalEntry/JournalEntry';
@@ -48,6 +49,7 @@ export const models = {
   AccountingSettings,
   Address,
   Batch,
+  Color,
   Defaults,
   Item,
   JournalEntry,
