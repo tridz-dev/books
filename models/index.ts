@@ -17,6 +17,7 @@ import { PrintSettings } from './baseModels/PrintSettings/PrintSettings';
 import { PrintTemplate } from './baseModels/PrintTemplate';
 import { PurchaseInvoice } from './baseModels/PurchaseInvoice/PurchaseInvoice';
 import { PurchaseInvoiceItem } from './baseModels/PurchaseInvoiceItem/PurchaseInvoiceItem';
+import { Rooms } from './baseModels/Rooms/Rooms';
 import { SalesInvoice } from './baseModels/SalesInvoice/SalesInvoice';
 import { SalesInvoiceItem } from './baseModels/SalesInvoiceItem/SalesInvoiceItem';
 import { SalesQuote } from './baseModels/SalesQuote/SalesQuote';
@@ -61,6 +62,7 @@ export const models = {
   PriceListItem,
   PurchaseInvoice,
   PurchaseInvoiceItem,
+  Rooms,
   SalesInvoice,
   SalesInvoiceItem,
   SalesQuote,

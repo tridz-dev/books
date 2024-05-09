@@ -1,0 +1,35 @@
+{
+  "name": "Rooms",
+  "label": "Rooms",
+  "naming": "manual",
+  "fields": [
+    {
+      "fieldname": "number",
+      "label": "Room Number",
+      "fieldtype": "Data",
+      "default": "RM-",
+      "required": true
+    },
+    {
+      "fieldname": "name",
+      "label": "Name",
+      "fieldtype": "Data",
+      "required": true
+    },
+    {
+      "fieldname": "customer",
+      "label": "Customer",
+      "fieldtype": "Link",
+      "target":"Party",
+      "required": false
+    },
+    {
+      "fieldname": "capacity",
+      "label": "Capacity",
+      "fieldtype": "Int",
+      "required": false
+    }
+  ],
+  "keywordFields": ["number", "name"],
+  "quickEditFields": ["number", "name","capacity","customer"]
+}

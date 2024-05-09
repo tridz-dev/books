@@ -32,6 +32,7 @@ import Tax from './app/Tax.json';
 import TaxDetail from './app/TaxDetail.json';
 import TaxSummary from './app/TaxSummary.json';
 import UOM from './app/UOM.json';
+import Rooms from './app/Rooms.json';
 import InventorySettings from './app/inventory/InventorySettings.json';
 import Location from './app/inventory/Location.json';
 import PurchaseReceipt from './app/inventory/PurchaseReceipt.json';
@@ -152,4 +153,6 @@ export const appSchemas: Schema[] | SchemaStub[] = [
   POSSettings as Schema,
   POSShift as Schema,
   POSShiftAmounts as Schema,
+
+  Rooms as Schema,
 ];
