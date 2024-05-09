@@ -12,6 +12,7 @@ import {
   protocol,
   ProtocolRequest,
   ProtocolResponse,
+  systemPreferences
 } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import fs from 'fs';
@@ -57,6 +58,8 @@ export class Main {
     if (this.isMac && this.isDevelopment) {
       app.dock.setIcon(this.icon);
     }
+
+    this.checkAndPromptTouchID();
   }
 
   get isDevelopment() {
@@ -132,12 +135,16 @@ export class Main {
       this.registerAppProtocol();
     }
 
-    await this.mainWindow.loadURL(this.winURL);
-    if (this.isDevelopment && !this.isTest) {
-      this.mainWindow.webContents.openDevTools();
-    }
-
     this.setMainWindowListeners();
+  }
+
+  async loadMainWindowURL() {
+    if (this.mainWindow) {
+      await this.mainWindow.loadURL(this.winURL);
+      if (this.isDevelopment && !this.isTest) {
+        this.mainWindow.webContents.openDevTools();
+      }
+    }
   }
 
   setViteServerURL() {
@@ -174,6 +181,23 @@ export class Main {
         emitMainProcessError(err)
       );
     });
+  }
+
+  async checkAndPromptTouchID() {
+    if (this.isMac && systemPreferences.canPromptTouchID()) {
+      try {
+        await systemPreferences.promptTouchID('Authenticate to access Frappe Books');
+        console.log('Successfully authenticated with Touch ID!');
+        this.createWindow();
+        await this.loadMainWindowURL();
+      } catch (err) {
+        console.error('Touch ID authentication failed:', err);
+        app.quit();
+      }
+    } else {
+      this.createWindow();
+      await this.loadMainWindowURL();
+    }
   }
 }
 
