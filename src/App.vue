@@ -11,6 +11,18 @@
       :company-name="companyName"
     />
     <!-- Main Contents -->
+    <SetLock
+      v-if="activeScreen === 'SetLock'"
+      class="flex-1"
+      @set-passcode="setPasscode"
+      @change-db-file="showDbSelector"
+    />
+    <AppLock
+      v-if="activeScreen === 'AppLock'"
+      class="flex-1"
+      @authenticate="authenticate"
+      @change-db-file="showDbSelector"
+    />
     <Desk
       v-if="activeScreen === 'Desk'"
       class="flex-1"
@@ -44,6 +56,8 @@ import { defineComponent, provide, ref, Ref } from 'vue';
 import WindowsTitleBar from './components/WindowsTitleBar.vue';
 import { handleErrorWithDialog } from './errorHandling';
 import { fyo } from './initFyo';
+import SetLock from './pages/SetLock.vue';
+import AppLock from './pages/AppLock.vue';
 import DatabaseSelector from './pages/DatabaseSelector.vue';
 import Desk from './pages/Desk.vue';
 import SetupWizard from './pages/SetupWizard/SetupWizard.vue';
@@ -63,6 +77,8 @@ import { routeTo } from './utils/ui';
 import { useKeys } from './utils/vueUtils';
 
 enum Screen {
+  SetLock = 'SetLock',
+  AppLock = 'AppLock',
   Desk = 'Desk',
   DatabaseSelector = 'DatabaseSelector',
   SetupWizard = 'SetupWizard',
@@ -75,6 +91,8 @@ export default defineComponent({
     SetupWizard,
     DatabaseSelector,
     WindowsTitleBar,
+    SetLock,
+    AppLock,
   },
   setup() {
     const keys = useKeys();
@@ -139,13 +157,44 @@ export default defineComponent({
 
       await this.fileSelected(lastSelectedFilePath);
     },
+    async setPasscode(passCode: string): Promise<void> {
+      if (await fyo.db.setPasscode(passCode)) {
+        this.activeScreen = Screen.Desk;
+        return;
+      } else {
+        await showDialog({
+          title: this.t`Some error occured!`,
+          type: 'error',
+          detail: this.t`Check your passcode and try again`,
+        });
+      }
+    },
+    async authenticate(passCode: string): Promise<void> {
+      const result = await fyo.db.checkPasscode(passCode);
+      if (result === 1) {
+        this.activeScreen = Screen.Desk;
+        return;
+      } else {
+        await showDialog({
+          title: this.t`Wrong passcode!`,
+          type: 'error',
+          detail: this.t`Check your passcode and try again`,
+        });
+      }
+    },
+    async launchLock(): Promise<void> {
+      if ((await fyo.db.checkPasscode('')) === -1) {
+        this.activeScreen = Screen.SetLock;
+      } else 
+      this.activeScreen = Screen.AppLock;
+    },
     async setSearcher(): Promise<void> {
       this.searcher = new Search(fyo);
       await this.searcher.initializeKeywords();
     },
     async setDesk(filePath: string): Promise<void> {
       await setLanguageMap();
-      this.activeScreen = Screen.Desk;
+      await this.launchLock();
       await this.setDeskRoute();
       await fyo.telemetry.start(true);
       await ipc.checkForUpdates();

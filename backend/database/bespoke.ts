@@ -16,6 +16,60 @@ import { Money } from 'pesa';
 export class BespokeQueries {
   [key: string]: BespokeFunction;
 
+  static async checkPasscode(
+    db: DatabaseCore,
+    passCode: string
+  ): Promise<number> {
+    try {
+      const exists = await db.knex!.raw(
+        `SELECT name FROM sqlite_master WHERE type='table' AND name='Auth'`
+      );
+      if (exists.length < 1) {
+        return -1;
+      }
+      const result = await db.knex!.raw(
+        "SELECT hash FROM Auth WHERE user = 'admin'"
+      );
+      const lockHash = result[0]?.hash;
+      if (passCode === lockHash) {
+        return 1;
+      }
+      return 0;
+    } catch (error) {
+      console.error('Error checking table existence:', error);
+      return -1;
+    }
+  }
+
+  static async setPasscode(
+    db: DatabaseCore,
+    passCode: string
+  ): Promise<boolean> {
+    const newHash = passCode;
+    try {
+      const exists = await db.knex!.raw(
+        `SELECT name FROM sqlite_master WHERE type='table' AND name='Auth'`
+      );
+      if (exists.length > 0)
+        await db.knex!.raw("UPDATE Auth SET hash = ? WHERE user = 'admin'", [
+          newHash,
+        ]);
+      else {
+        await db.knex!.raw(
+          'CREATE TABLE Auth (user TEXT PRIMARY KEY, hash TEXT NOT NULL)'
+        );
+        await db.knex!.raw(
+          "INSERT INTO Auth (user, hash) VALUES ('admin', ? )",
+          [newHash]
+        );
+      }
+      return true;
+    } catch (error) {
+      console.error('Error updating admin hash:', error);
+      return false;
+    }
+  }
+
   static async getLastInserted(
     db: DatabaseCore,
     schemaName: string

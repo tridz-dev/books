@@ -254,6 +254,24 @@ export class DatabaseHandler extends DatabaseBase {
    * The query logic for these is in backend/database/bespoke.ts
    */
 
+  async checkPasscode(
+    passCode: string
+  ): Promise <number> {
+    return (await this.#demux.callBespoke(
+      'checkPasscode',
+      passCode
+    )) as number;
+  }
+
+  async setPasscode(
+    passCode: string
+  ): Promise <boolean> {
+    return (await this.#demux.callBespoke(
+      'setPasscode',
+      passCode
+    )) as boolean;
+  }
+
   async getLastInserted(schemaName: string): Promise<number> {
     if (this.schemaMap[schemaName]?.naming !== 'autoincrement') {
       throw new ValueError(
